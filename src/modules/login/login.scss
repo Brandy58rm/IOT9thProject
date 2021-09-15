@@ -1,0 +1,98 @@
+.login-container {
+    margin: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #FFF;
+    display: flex;
+    .image-container {
+        width: 50%;
+        height: 100vh;
+        .img-login {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .form-container {
+        width: 50%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .login-form {
+            border: 3pt solid #40C4FF;
+            border-radius: 10px;
+            width: 40%;
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .logo-container {
+                background-color: #40C4FF;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                img {
+                    width: 50%;
+                }
+            }
+            .input-container {
+                width: 100%;
+                height: 100%;
+                .email {
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-family: 'Azeret Mono', monospace;
+                    ;
+                    h5 {
+                        width: 100%;
+                        color: #40C4FF;
+                        text-align: left;
+                        font-size: 15pt;
+                        margin-bottom: 5px;
+                    }
+                }
+                .password {
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-family: 'Azeret Mono', monospace;
+                    h5 {
+                        width: 100%;
+                        color: #40C4FF;
+                        text-align: left;
+                        font-size: 15pt;
+                        margin-top: 1px;
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+            .button-Container {
+                margin-bottom: 10px;
+                .button-signin {
+                    width: 150px;
+                    height: 50px;
+                    font-size: 20px;
+                    border-radius: 10px;
+                    background-color: #01579B;
+                    color: #fff;
+                    border: none;
+                }
+                .button-signin:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+        .register-link {
+            span {
+                color: #01579B;
+                a {
+                    color: #40C4FF;
+                }
+            }
+        }
+    }
+}

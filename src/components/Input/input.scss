@@ -1,0 +1,23 @@
+input {
+    border-color: #40C4FF;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 15pt;
+    border: 2pt solid #40C4FF;
+    font-family: 'Inconsolata', monospace;
+    color: #40C4FF;
+}
+
+input:focus {
+    font-family: 'Inconsolata', monospace;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 2pt #40C4FF;
+}
+
+input::placeholder {
+    padding-left: 10px;
+    color: #40C4FF;
+    font-family: 'Inconsolata', monospace;
+}

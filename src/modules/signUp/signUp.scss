@@ -1,0 +1,52 @@
+.container {
+    margin: 0;
+    background-color: red;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    .container-register {
+        width: 30%;
+        height: 70%;
+        background-color: white;
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2pt solid blue;
+        border-radius: 10px;
+        .title-register {
+            h2 {
+                font-size: 25pt;
+                font-family: 'Azeret Mono', monospace;
+                color: #01579B;
+                font-weight: bold;
+            }
+        }
+        .fullname-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Inconsolata', monospace;
+            justify-content: center;
+            justify-content: space-between;
+            font-size: 16pt;
+            color: #40C4FF;
+            .firstname-container {
+                margin: 5px;
+                display: flex;
+                flex-direction: column;
+            }
+            .lastname-container {
+                margin: 5px;
+                display: flex;
+                flex-direction: column;
+            }
+            .middlename-container {
+                margin: 5px;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+}
