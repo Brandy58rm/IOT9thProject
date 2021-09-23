@@ -1,7 +1,7 @@
 const PaginaPruebas = () =>{
     return(
         <>
-
+        <div>Hola</div>
         </>
     )
 }
