@@ -1,6 +1,6 @@
 input {
     border-color: #40C4FF;
-    width: 100%;
+    padding-left: 20px;
     height: 40px;
     border-radius: 10px;
     font-size: 15pt;
@@ -20,4 +20,10 @@ input::placeholder {
     padding-left: 10px;
     color: #40C4FF;
     font-family: 'Inconsolata', monospace;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

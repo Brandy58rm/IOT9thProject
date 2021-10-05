@@ -1,7 +1,8 @@
+import SelectImage from "../../components/SelectImage/selectImage"
 const PaginaPruebas = () =>{
     return(
         <>
-        <div>Hola</div>
+        <SelectImage></SelectImage>
         </>
     )
 }
