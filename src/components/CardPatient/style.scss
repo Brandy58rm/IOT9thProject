@@ -1,0 +1,44 @@
+    .cardContent {
+        width: 700px;
+        height: 250px;
+        background-color: #40C4FF;
+        border-radius: 10px;
+        display: flex;
+        margin: 10px;
+        .imgContent {
+            display: flex;
+            align-items: center;
+            margin-left: 5px;
+            img {
+                width: 150px;
+            }
+        }
+        .nameButton {
+            margin-left: 10px;
+            h1 {
+                color: #fff;
+                font-family: 'Azeret Mono', monospace;
+            }
+            .buttonContent {
+                margin-top: 45px;
+                height: 120px;
+                display: grid;
+                grid-template-columns: 100px 200px 100px;
+                grid-template-rows: 50% 50%;
+                .button {
+                    width: 150px;
+                    height: 50px;
+                    font-size: 20px;
+                    border-radius: 10px;
+                    background-color: #01579B;
+                    color: #fff;
+                    border: none;
+                    grid-column: 3;
+                    grid-row: 2;
+                }
+                .button:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }

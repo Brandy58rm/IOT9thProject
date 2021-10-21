@@ -1,10 +1,10 @@
-import SelectImage from "../../components/SelectImage/selectImage"
+import CardPatient from "../../components/CardPatient/cardPatient.jsx"
 const PaginaPruebas = () =>{
     return(
         <>
-        <SelectImage></SelectImage>
+        <CardPatient></CardPatient>
         </>
     )
 }
 
-export default PaginaPruebas
+export default PaginaPruebas;

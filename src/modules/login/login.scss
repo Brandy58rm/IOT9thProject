@@ -43,8 +43,7 @@
                     padding: 10px;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
-                    font-family: 'Azeret Mono', monospace;
+                    align-items: flex-start;
                     ;
                     h5 {
                         width: 100%;
@@ -58,7 +57,7 @@
                     padding: 10px;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
+                    align-items: flex-start;
                     font-family: 'Azeret Mono', monospace;
                     h5 {
                         width: 100%;

@@ -17,21 +17,21 @@ const SelectImage =(props)=> {
     return (
         
             
-            <>
-            <div>
-                <div className="img-holder">
-                    <img src={profileImg} alt="" id="img" className="img" />
-                </div>
-                        <input type="file" accept="image/*" name="image-upload" id="input" onChange={imageHandler} />
-                        <div className="label">
-                        <label className="image-upload" htmlFor="input">
-                            <p>Choose your Photo</p>
-                        </label>
-                </div>
-
+      <>
+        <div>
+            <div className="img-holder">
+                <img src={profileImg} alt="" id="img" className="img" />
             </div>
-            </>
-        
+                    <input type="file" accept="image/*" name="image-upload" id="input" onChange={imageHandler} />
+                    <div className="label">
+                    <label className="image-upload" htmlFor="input">
+                        <p>Choose your Photo</p>
+                    </label>
+            </div>
+
+        </div>
+      </>
+  
     )
 	
 }
