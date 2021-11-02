@@ -1,0 +1,72 @@
+.viewContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.generalContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .leftContent {
+        width: 50%;
+        height: 100%;
+        margin-left: 10px;
+        margin-top: 50px;
+        .locationContent {
+            h1 {
+                color: #40C4FF;
+                font-family: 'Azeret Mono', monospace;
+                font-size: 30pt;
+            }
+        }
+        .profileContent {
+            margin-top: 60px;
+            h1 {
+                color: #40C4FF;
+                font-family: 'Azeret Mono', monospace;
+                font-size: 30pt;
+            }
+            .patientContent {
+                width: 82%;
+                height: 700px;
+                background-color: #40C4FF;
+                border-radius: 15px;
+                .photoInfoContainer {
+                    display: flex;
+                    flex: 1;
+                    flex-wrap: wrap;
+                    .imgContainer {
+                        img {
+                            width: 250px;
+                            margin: 10px 0px 0px 10px;
+                        }
+                    }
+                    .infoContainer {
+                        margin-left: 15px;
+                        margin-top: 20px;
+                        h2 {
+                            font-family: 'Azeret Mono', monospace;
+                            color: #fff;
+                            font-size: 25pt;
+                            margin: 15px;
+                        }
+                        .ageGnreContainer {
+                            display: grid;
+                            grid-template-columns: 50% 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .rightContent {
+        width: 70%;
+        height: 100%;
+        .right {
+            width: 100%;
+            height: 100vh;
+            background-color: blue;
+        }
+    }
+}
