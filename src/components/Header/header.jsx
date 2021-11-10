@@ -4,10 +4,18 @@ import logo from '../../assets/logo.png'
 import homeIcon from '../../assets/home.svg'
 import dashboardIcon from '../../assets/dashboard.svg'
 import settingsIcon from '../../assets/settings.svg'
+import { useHistory } from 'react-router';
 
 
 
 const Header = () =>{
+    const history=useHistory();
+
+    const signOut = () =>{
+        localStorage.removeItem('login');
+        history.push('/login')
+
+    }
     return(
         <>
             
@@ -23,7 +31,7 @@ const Header = () =>{
 
                     </div>
                         <div>
-                        <a href="#"><img src={settingsIcon} alt="" /></a>
+                        <a onClick={signOut} ><img src={settingsIcon} alt="" /></a>
 
                     </div>
                 </div>   

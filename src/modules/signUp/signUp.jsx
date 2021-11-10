@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import './signUp.scss'
 import Input from '../../components/Input/input'
 import DatePicker from 'react-datepicker'
@@ -7,6 +7,14 @@ import SelectImage from '../../components/SelectImage/selectImage';
 import Button from '../../components/Button/button'
 const SignUp = () =>{
     const [selectedDate, setSelectedDate] = useState(null)
+    useEffect(()=>{
+        var isLoggued = localStorage.getItem("login")
+        console.log(isLoggued)
+        if(isLoggued){
+            
+        }
+    },[])
+    
     return(
         <>
             <div className="container">
