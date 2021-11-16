@@ -2,7 +2,7 @@ import './style.scss'
 import React,{useEffect,useState} from 'react'
 import Header from '../../components/Header/header'
 import CardPatient from '../../components/CardPatient/cardPatient'
-import AddPatient from '../../components/AddPatient/AddPatient'
+import AddPatient from '../../components/AddPatient/addPatient'
 import config from '../../config'
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -14,6 +14,8 @@ const Home = () =>{
     
 
     const [patients,setPatients]=React.useState([])
+    
+
 
     useEffect(() => {
         if (location.state == undefined){
@@ -66,19 +68,25 @@ const Home = () =>{
             console.error(error);
         }
 
-        }, [location]);
+    }, [location]);
 
-        const goToAddPatient = () =>{
-            history.push({
-                pathname: '/addPatient',
-                state: location.state // your data array of objects
-            })
+    const goToAddPatient = () =>{
+        history.push({
+            pathname: '/addPatient',
+            state: location.state // your data array of objects
+        })
     }
     
-    
-
-
-    
+    const viewInfo = (data) =>{
+        
+        history.push({
+            pathname: '/view',
+            state: {
+                state : location.state,
+                idPatient: data.id
+            } // your data array of objects
+        })
+    }
     
     return(
         <>
@@ -90,9 +98,13 @@ const Home = () =>{
                     </div>
                     <div className="patientContent">
                     {patients ?  
-                        patients.map((data,i)=>
+                        patients.map((data)=>
                         
-                            <CardPatient name={data.name}/>
+                            <CardPatient 
+                            name={data.name +" "+ data.lastName}
+                            key={data.id}
+                            onClick={() => {viewInfo(data)}}
+                            />
                        
                         )
                         :

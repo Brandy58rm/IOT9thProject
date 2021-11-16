@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 
 
 
-const Header = () =>{
+const Header = (props) =>{
     const history=useHistory();
 
     const signOut = () =>{
@@ -16,6 +16,7 @@ const Header = () =>{
         history.push('/login')
 
     }
+    
     return(
         <>
             
@@ -23,11 +24,11 @@ const Header = () =>{
                 <img src={logo} alt="" />
                 <div className="iconContainer">
                     <div>
-                        <a href="#"><img src={homeIcon} alt="" /></a>
+                        <a onClick={props.onClickHome}><img src={homeIcon} alt="" /></a>
 
                     </div>
                     <div>
-                        <a href="#"><img src={dashboardIcon} alt="" /></a>
+                        <a onClick={props.onClickDashboard}><img src={dashboardIcon} alt="" /></a>
 
                     </div>
                         <div>

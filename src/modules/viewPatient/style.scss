@@ -28,14 +28,13 @@
                 font-size: 30pt;
             }
             .patientContent {
-                width: 82%;
+                width: auto;
                 height: 700px;
                 background-color: #40C4FF;
                 border-radius: 15px;
+                margin-right: 5px;
                 .photoInfoContainer {
                     display: flex;
-                    flex: 1;
-                    flex-wrap: wrap;
                     .imgContainer {
                         img {
                             width: 250px;
@@ -43,6 +42,9 @@
                         }
                     }
                     .infoContainer {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
                         margin-left: 15px;
                         margin-top: 20px;
                         h2 {
@@ -57,11 +59,45 @@
                         }
                     }
                 }
+                .generalContainerMedicine {
+                    width: 58%;
+                    height: auto;
+                    background-color: #40C4FF;
+                    margin-left: 10px;
+                    .titleMedicine {
+                        h2 {
+                            color: #fff;
+                            margin-left: 10px;
+                            font-size: 25pt;
+                            font-family: 'Inconsolata', monospace;
+                        }
+                    }
+                    .headerMedice {
+                        display: flex;
+                        justify-content: space-between;
+                        width: 800px;
+                        h4 {
+                            color: #fff;
+                            margin: 0;
+                            margin-right: 50px;
+                            font-size: 15pt;
+                            font-family: 'Azeret Mono', monospace;
+                        }
+                    }
+                    .scrolling {
+                        display: flex;
+                        flex-direction: column;
+                        flex: auto;
+                        overflow-y: scroll;
+                        width: 170%;
+                        height: 150px;
+                    }
+                }
             }
         }
     }
     .rightContent {
-        width: 70%;
+        width: 50%;
         height: 100%;
         .right {
             width: 100%;

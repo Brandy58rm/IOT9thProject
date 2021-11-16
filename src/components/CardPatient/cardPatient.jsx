@@ -15,7 +15,7 @@ const CardPatient = (props) => {
                     </h1>
                 </div>
                 <div className="buttonContent">
-                    <Button className="button">View</Button>
+                    <Button onClick={props.onClick} className="button">View</Button>
                 </div>
             </div>
         </div>
