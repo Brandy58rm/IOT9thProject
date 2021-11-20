@@ -52,7 +52,7 @@ const PatientAdd = () =>{
         try{
 
 
-            var url = `${config.backendURL}carer/addPatient`;
+            var url = `${config.backendURL}carer/patient/add`;
             let h = new Headers();
             h.append('authorization', `Bearer ${location.state.token}`)
             h.append('Accept', 'application/json, text/plain, /')
@@ -79,6 +79,8 @@ const PatientAdd = () =>{
                         state: location.state
                         
                     })
+
+                  
                     
                    
                     

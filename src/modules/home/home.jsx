@@ -12,7 +12,7 @@ const Home = () =>{
     const location = useLocation();
     const history = useHistory();
     
-
+   
     const [patients,setPatients]=React.useState([])
     
 
@@ -20,9 +20,12 @@ const Home = () =>{
     useEffect(() => {
         if (location.state == undefined){
             localStorage.removeItem('login');
+            
         }
         
         const hasLogin = localStorage.getItem("login");
+        
+
         if (!hasLogin) {
           history.push("/login");
         }
@@ -32,7 +35,7 @@ const Home = () =>{
         //Call to API
         try{
 
-
+            
             var url = `${config.backendURL}carer/${location.state.user.id}/patients`;
             let h = new Headers();
             
@@ -54,7 +57,7 @@ const Home = () =>{
                     setPatients(data.patients)
                     console.log(data)
                     console.log(patients)
-                    
+                   
                     
                 })
             })
