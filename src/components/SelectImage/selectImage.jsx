@@ -1,8 +1,9 @@
 import React, {useState } from 'react';
 import camIcon from '../../assets/cameraicon.svg'
 import './style.scss';
-const SelectImage =(props)=> { 
-  const imageHandler = (e) => {
+const SelectImage =()=> { 
+  
+	const imageHandler = (e) => {
     const reader = new FileReader();
     reader.onload = () =>{
       if(reader.readyState === 2){
@@ -11,9 +12,8 @@ const SelectImage =(props)=> {
     }
     reader.readAsDataURL(e.target.files[0])
   };
-	
     const [profileImg, setProfileImage] = useState(camIcon)
-
+    
     return (
         
             

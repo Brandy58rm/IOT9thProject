@@ -8,7 +8,11 @@ const Schedule = (props) =>{
             <div className="medicineContainer">
                 <h4>{props.name}</h4>
                 <h4>{`${props.takeEvery} hrs`}</h4>
-                <h4>{props.nextDoseDate}</h4>
+                <h4>{props.startingOn}</h4>
+                <h4>{props.notes}</h4>
+                <h4>{props.totalDosis}</h4>
+
+
             </div>
                
         </>

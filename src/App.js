@@ -6,7 +6,8 @@ import PaginaPruebas from './modules/paginapruebas/paginaPruebas';
 import Home from './modules/home/home'
 import ViewPatient from './modules/viewPatient/viewPatient';
 import AddPatient from './modules/addPatient/PatientAdd';
-
+import AddPrescription from './modules/addPrescription/addPrescription';
+import MapGoogle from './components/Map/map';
 function App() {
     return ( 
         <Router>
@@ -18,6 +19,11 @@ function App() {
                 <Route path="/view" exact component={ViewPatient}></Route>
                 <Route path="/addPatient" exact component={AddPatient}></Route>
                 <Route path="/pruebas" exact component={PaginaPruebas}></Route>
+                <Route path="/addPrescription" exact component={AddPrescription}></Route>
+                <Route path="/map" exact component={MapGoogle}></Route>
+
+
+
             </Switch> 
            
         

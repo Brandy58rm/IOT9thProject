@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { useLocation } from "react-router-dom";
 import config from '../../config'
 import Schedule from '../../components/Schedule/schedule'
-
+import Button from '../../components/Button/button'
 
 const ViewPatient = () =>{
     const history = useHistory()
@@ -71,11 +71,20 @@ const ViewPatient = () =>{
             state:location.state.state
         })
     }
+    const goToAddPrescription = () =>{
+        history.push({
+            pathname:"/addPrescription",
+            state:info,
+            data:location.state.state
+                
+        })
+       
+    }
 
     
    
 
-    console.log(schedule)
+    console.log(info)
  
     return(
         <>
@@ -133,7 +142,10 @@ const ViewPatient = () =>{
                                     <div className="headerMedice">
                                         <h4>Name</h4>
                                         <h4>Every</h4>
-                                        <h4>Next Medication Taking</h4>
+                                        <h4>Start on</h4>
+                                        <h4>Notes</h4>
+                                        <h4>Total Dosis</h4>
+
                                     </div>
                                     <div className="scrolling">
 
@@ -141,7 +153,9 @@ const ViewPatient = () =>{
                                             <Schedule
                                             name={s.medication.name}
                                             takeEvery={s.takeEvery}
-                                            nextDoseDate={s.nextDoseDate}
+                                            startingOn={s.startingOn}
+                                            notes={s.notes}
+                                            totalDosis={s.totalDosis}
                                             key={s.id}
                                             ></Schedule>
                                         ):
@@ -151,7 +165,17 @@ const ViewPatient = () =>{
                                         }
                                     </div>
                                 </div>
-                                
+                                <div className="buttonsContainer">
+                                    <div>
+                                        <Button className="buttonDash">DashBoard</Button>
+
+                                    </div>
+                                    <div>
+                                        <Button onClick={goToAddPrescription} className="buttonAdd">Add</Button>
+                                        <Button className="buttonEdit">Edit</Button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                         

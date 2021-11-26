@@ -74,11 +74,14 @@ const PatientAdd = () =>{
             .then((response)=>{
                 response.json().then((data) => {
                     console.log(data)
-                    history.push({
-                        pathname:"/",
-                        state: location.state
-                        
-                    })
+                    if(data.Status==0){
+
+                        history.push({
+                            pathname:"/",
+                            state: location.state
+                            
+                        })
+                    }
 
                   
                     

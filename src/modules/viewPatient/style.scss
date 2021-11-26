@@ -29,7 +29,7 @@
             }
             .patientContent {
                 width: auto;
-                height: 700px;
+                height: 650px;
                 background-color: #40C4FF;
                 border-radius: 15px;
                 margin-right: 5px;
@@ -91,6 +91,48 @@
                         overflow-y: scroll;
                         width: 170%;
                         height: 150px;
+                    }
+                }
+                .buttonsContainer {
+                    padding: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    .buttonDash {
+                        width: 150px;
+                        height: 50px;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        background-color: #01579B;
+                        color: #fff;
+                        border: none;
+                        grid-column: 3;
+                        grid-row: 2;
+                    }
+                    .buttonAdd {
+                        width: 150px;
+                        height: 50px;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        background-color: #01579B;
+                        color: #fff;
+                        border: none;
+                        grid-column: 3;
+                        grid-row: 2;
+                        margin-right: 5px;
+                    }
+                    .buttonEdit {
+                        width: 150px;
+                        height: 50px;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        background-color: #01579B;
+                        color: #fff;
+                        border: none;
+                        grid-column: 3;
+                        grid-row: 2;
+                    }
+                    Button:hover {
+                        cursor: pointer;
                     }
                 }
             }
