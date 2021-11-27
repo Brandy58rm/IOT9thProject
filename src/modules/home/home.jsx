@@ -91,10 +91,19 @@ const Home = () =>{
         })
     }
     
+    const goToDashboard = () =>{
+        history.push({
+            pathname: '/dashboard',
+            state: {
+                state : location.state,
+                patients: patients
+            } // your data array of objects
+        })
+    }
     return(
         <>
             <div className="homeContent">
-                <Header/>
+                <Header onClickDashboard={goToDashboard}/>
                 <div className="sectionContent">
                     <div>
                         <h1>Patients</h1>
