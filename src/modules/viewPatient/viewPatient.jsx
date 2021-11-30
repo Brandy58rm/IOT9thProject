@@ -30,7 +30,14 @@ const ViewPatient = () =>{
     const location = useLocation()
     const [info,setInfo] = React.useState()
     const [schedule,setSchedule]=React.useState()
-    
+   
+
+    /////////////////////////////
+    const mapContainerRef = useRef(null);
+
+    const [lng, setLng] = useState(-117.00371);
+    const [lat, setLat] = useState(32.5027);
+    const [zoom, setZoom] = useState(10);
     useEffect(()=>{
         const hasLogin = localStorage.getItem("login");
         if (!hasLogin) {
@@ -59,9 +66,11 @@ const ViewPatient = () =>{
             .then((response)=>{
                 response.json().then((data) => {
                     
-                    setInfo(data)
-                    setSchedule(data.patient.schedule)
-                    
+                    setInfo(data);
+                    setSchedule(data.patient.schedule);
+                    setLng(data.patient.currentLocation.long)
+                    setLat(data.patient.currentLocation.lat)
+
                     
                     
                 })
@@ -76,53 +85,53 @@ const ViewPatient = () =>{
             console.error(error);
         }
 
+        const map = new mapboxgl.Map({
+            container: mapContainerRef.current,
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [lng, lat],
+            zoom: zoom,
+          });
+          
+          
+      
+          
+      
+          
+          // // Create default markers
+          // geoJson.features.map((feature) =>
+          //   new mapboxgl.Marker().setLngLat(feature.geometry.coordinates).addTo(map)
+          // );
+      
+          // Add navigation control (the +/- zoom buttons)
+          map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      
+          map.on('move', () => {
+            
+            setLng(map.getCenter().lng.toFixed(4));
+            setLat(map.getCenter().lat.toFixed(4));
+            setZoom(map.getZoom().toFixed(2));
+          });
+      
+          // Clean up on unmount
+          return () => map.remove();
 
 
-    },[location])
+
+
+
+    },[])
 
 
 
 
-/////////////////////////////
-    const mapContainerRef = useRef(null);
 
-    const [lng, setLng] = useState(-117.00371);
-    const [lat, setLat] = useState(32.5027);
-    const [zoom, setZoom] = useState(10);
 
-    // Initialize map when component mounts
-  useEffect(() => {
-    const map = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lng, lat],
-      zoom: zoom,
-    });
+//     // Initialize map when component mounts
+//   useEffect(() => {
     
+
     
-
-    // create the popup
-    let markerPopup = new mapboxgl.Popup({offset: 25})
-    .setHTML("test");
-
-    new mapboxgl.Marker().setLngLat([lng,lat]).setPopup(markerPopup).addTo(map);
-    // // Create default markers
-    // geoJson.features.map((feature) =>
-    //   new mapboxgl.Marker().setLngLat(feature.geometry.coordinates).addTo(map)
-    // );
-
-    // Add navigation control (the +/- zoom buttons)
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
-    map.on('move', () => {
-      setLng(map.getCenter().lng.toFixed(4));
-      setLat(map.getCenter().lat.toFixed(4));
-      setZoom(map.getZoom().toFixed(2));
-    });
-
-    // Clean up on unmount
-    return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+//   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -209,7 +218,6 @@ const ViewPatient = () =>{
                                             :
                                             <h2>Date of Birth:?</h2>
                                             }
-                                            
                                     </div>
                                 </div>
                                 
