@@ -81,6 +81,8 @@ const PatientAdd = () =>{
                             state: location.state
                             
                         })
+                    }else{
+                        setError("El usuario ya se encuentra registrado a un carer / no ha ingresado el token")
                     }
 
                   
@@ -121,8 +123,10 @@ const PatientAdd = () =>{
                         <Button onClick={cancelAdd} className="buttonCancel">Cancel</Button>
                     
                         <Button onClick={addPatient} className="buttonContinue">Continue</Button>
-                    
+
                     </div>
+                    {error ? <div className="error"><span >{error}</span></div> : null}
+
                 </div>
             </div>
         </>

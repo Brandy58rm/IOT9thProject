@@ -75,7 +75,7 @@ const SignUp = () =>{
     const createAccount = async (e) =>{
         //Avoid html default submit
         e.preventDefault();
-        if (!form.email || !form.password) {
+        if (!form.email || !form.password || !form.name || !form.lastname || !form.phonenumber || !form.dob) {
         setError("No se permiten campos vacios");
         return;
         }
@@ -146,7 +146,7 @@ const SignUp = () =>{
                                 response.json().then((data) => {
                                     console.log(data);
                                     if (data.Status!==0) {
-                                        setError("Usuario o contraseña invalidos");
+                                        setError("No se permiten campos Vacios");
                                     } else {
                                         console.log(data);
                                       
@@ -186,7 +186,9 @@ const SignUp = () =>{
 
     }
 
-
+    const buttonCancel = () =>{
+        history.push("/login")
+    }
     
     return(
         <>
@@ -301,12 +303,13 @@ const SignUp = () =>{
                         <SelectImage/>
                         </div>
                         <div className="buttonsContainer">
-                            <Button  className="buttonCancel">Cancel</Button>
+                            <Button onClick={buttonCancel}  className="buttonCancel">Cancel</Button>
                             <Button onClick={createAccount} className="buttonCreate">Create Account</Button>
 
                         </div>
                     </div>
                     
+                    {error ? <div className="error"><span >{error}</span></div> : null}
 
                 </div>
             </div>
