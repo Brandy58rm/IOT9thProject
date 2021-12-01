@@ -6,50 +6,51 @@ import Header from '../../components/Header/header';
 import config from '../../config'
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Button from "../../components/Button/button"
 import './dashboard.scss'
 const Dashboard = () =>{
     const history=useHistory();
     const location=useLocation();
     
     
-
+    const [disabled, setDisabled]=React.useState(false)
     const [option,setOption] = React.useState({
         chart: {
           type: "column"
         },
         title: {
-          text: "Drill Down"
+          text: "Total of Schedule"
         },
         series: [
           {
-            name: "Things",
+            name: "Patients",
             colorByPoint: true,
             data: [
-              {
-                name: "Armando",
-                y: 4,
-                drilldown: "16"
-              },
-              {
-                name: "Violeta",
-                y: 2,
-                drilldown: "15"
-              },
-              {
-                name: "Lucia",
-                y: 1,
-                drilldown: "8"
-              },
-              {
-                name: "Lucia",
-                y: 1,
-                drilldown: "8"
-              },
-              {
-                name: "Lucia",
-                y: 1,
-                drilldown: "8"
-              }
+              // {
+              //   name: "Armando",
+              //   y: 4,
+              //   drilldown: "16"
+              // },
+              // {
+              //   name: "Violeta",
+              //   y: 2,
+              //   drilldown: "15"
+              // },
+              // {
+              //   name: "Lucia",
+              //   y: 1,
+              //   drilldown: "8"
+              // },
+              // {
+              //   name: "Lucia",
+              //   y: 1,
+              //   drilldown: "8"
+              // },
+              // {
+              //   name: "Lucia",
+              //   y: 1,
+              //   drilldown: "8"
+              // }
             ],
           }
         ],
@@ -94,7 +95,8 @@ const Dashboard = () =>{
     
     
 
-    
+    const finalData=[]
+    const dripData=[]
     useEffect(() => {
       
       
@@ -115,7 +117,7 @@ const Dashboard = () =>{
   
       //Call to API
       const arrayPatient=location.state.patients;
-      const finalData=[]
+      
 
       arrayPatient.map((data)=>{
             var url = `${config.backendURL}carer/${location.state.state.user.id}/patient/${data.id}`;
@@ -123,7 +125,7 @@ const Dashboard = () =>{
             
             
             h.append('authorization', `Bearer ${location.state.state.token}`)
-            console.log(h)
+           
             
             let req= new Request(url,{
                 method: 'GET',
@@ -133,16 +135,56 @@ const Dashboard = () =>{
             });
 
             fetch(req)
-            .then((response)=>{
-              
+            .then((response)=>{   
                 response.json().then((data) => {
-                
+                    console.log(data)
                     finalData.push({
                         name: data.patient.name,
                         y: data.patient.schedule.length,
-                        drilldown: data.patient.id.toString()
+                        drilldown: data.patient.id.toString(),
+                        
                       }
                     )
+                    const schedule=data.patient.schedule;
+                    // console.log(schedule)
+                    // schedule.forEach(s => {
+
+                    //   dripData.push({
+                    //     id:data.patient.id.toString(),
+                    //     data:  [
+                    //       {
+                    //         name:s.medication.name,
+                    //         y:s.totalDosis
+                    //       }
+                    //     ]
+                    //   }
+                    // )
+                    // });
+                    
+                   
+                    dripData.push({
+                      id:data.patient.id.toString(),
+                      data:[]
+                    })
+                  
+
+
+                    for (var i = 0; i < schedule.length; i++) {
+                      // dripData.push({
+                      //   data:[{
+                      //     name:schedule[i].medication.name,
+                      //     y:schedule[i].totalDosis
+                      //   }]
+
+                      // })
+                      dripData[i].data.push({
+                        name:schedule[i].medication.name,
+                        y:schedule[i].totalDosis
+                      })
+                      
+                    }
+                    
+                    
                 })
                 
                 
@@ -156,91 +198,40 @@ const Dashboard = () =>{
       } 
       )
       console.log(finalData)
+      console.log(dripData)
       
-      // const data=[
-      //   {
-      //     name: "Patients",
-      //     colorByPoint: true,
-      //     data: finalData
-      //   }
-      // ]
+    }, []);
+    console.log(option)
+    
+    const updateData = () =>{
+      setDisabled(true)
+      const data=[
+        {
+          name: "Patients",
+          colorByPoint: true,
+          data: finalData
+        }
+      ]
       // console.log(data)
       setOption({
         ...option,
-        series:[{
-            name: "Patients",
-            colorByPoint: true,
-            data: finalData
-        }]
+        series:data,
+        drilldown:{
+          series:dripData
+        }
       })
-      console.log(option)
-      // setOption({
-      //     ...option,
-      //     series:data,
-         
-      // })
-    //   setOption({
-    //     chart: {
-    //       type: "column"
-    //     },
-    //     title: {
-    //       text: "Drill Down"
-    //     },
-    //     series: [
-    //       {
-    //         name: "Patients",
-    //         colorByPoint: true,
-    //         data: finalData,
-    //       }
-    //     ],
-    //     drilldown: {
-    //       series: [
-              
-    //         {
-    //           id: "animals",
-    //           data: [["Cats", 4], ["Dogs", 2], ["Cows", 1], ["Sheep", 2], ["Pigs", 1]]
-    //         },
-    //         {
-    //           id: "fruits",
-    //           data: [
-    //             {
-    //               name: "Apples",
-    //               y: 4,
-    //               drilldown: "apple_id"
-    //             },
-    //             {
-    //               name: "Oranges",
-    //               y: 2
-    //             }
-    //             // ['Banana',6]
-    //           ]
-    //         },
-    //         {
-    //           id: "apple_id",
-    //           data: [
-    //             {
-    //               name: "Nested Apples",
-    //               y: 5
-    //             }
-    //           ]
-    //         },
-    //         {
-    //           id: "cars",
-    //           data: [["Toyota", 4], ["Opel", 2], ["Volkswagen", 2]]
-    //         }
-    //       ]
-    //     }
-    // })
-      
-    }, []);
-    
+    }
+
     drilldown(Highcharts)
     return(
         <>
             <div className="dashboardContainer" >
                 <Header></Header>
                 <div className="chartContent">
-                <HighchartsReact highcharts={Highcharts}  options={option} />
+                <HighchartsReact highcharts={Highcharts}  options={option} oneToOne={true}   allowChartUpdate={true}/>
+                </div>
+                <div>
+                  <Button onClick={updateData} disabled={disabled}>See Patients Data</Button>
                 </div>
             </div>
         </>
