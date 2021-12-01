@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import homeIcon from '../../assets/home.svg'
 import dashboardIcon from '../../assets/dashboard.svg'
 import settingsIcon from '../../assets/settings.svg'
+import signoutIcon from '../../assets/signout.svg'
 import { useHistory } from 'react-router';
 
 
@@ -31,8 +32,12 @@ const Header = (props) =>{
                         <a onClick={props.onClickDashboard}><img src={dashboardIcon} alt="" /></a>
 
                     </div>
-                        <div>
-                        <a onClick={signOut} ><img src={settingsIcon} alt="" /></a>
+                    <div>
+                        <a onClick={props.onClickEdit}><img src={settingsIcon} alt="" /></a>
+
+                    </div>
+                    <div>
+                        <a onClick={signOut} ><img src={signoutIcon} alt="" /></a>
 
                     </div>
                 </div>   

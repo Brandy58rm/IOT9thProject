@@ -101,10 +101,19 @@ const Home = () =>{
             } // your data array of objects
         })
     }
+
+    const goToEditProfile = () =>{
+        history.push({
+            pathname: '/editProfile',
+            state:location.state,
+               
+        
+        })
+    }
     return(
         <>
             <div className="homeContent">
-                <Header onClickDashboard={goToDashboard}/>
+                <Header onClickDashboard={goToDashboard} onClickEdit={goToEditProfile}/>
                 <div className="sectionContent">
                     <div>
                         <h1>Patients</h1>

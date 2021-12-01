@@ -7,10 +7,13 @@ header {
     }
     .iconContainer {
         display: grid;
-        grid-template-rows: 100% 540%;
+        grid-template-rows: 80% 320% 50% 20%;
         justify-content: center;
         div {
             a {
+                 :hover {
+                    cursor: pointer;
+                }
                 img {
                     width: 50px;
                 }

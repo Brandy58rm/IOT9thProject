@@ -9,6 +9,7 @@ import AddPatient from './modules/addPatient/PatientAdd';
 import AddPrescription from './modules/addPrescription/addPrescription';
 import MapGoogle from './components/Map/map';
 import Dashboard from './modules/dashboard/dashboard'
+import EditProfile from './modules/editProfile/editProfile';
 function App() {
     return ( 
         <Router>
@@ -23,6 +24,8 @@ function App() {
                 <Route path="/addPrescription" exact component={AddPrescription}></Route>
                 <Route path="/map" exact component={MapGoogle}></Route>
                 <Route path="/dashboard" exact component={Dashboard}></Route>
+                <Route path="/editProfile" exact component={EditProfile}></Route>
+
 
 
 

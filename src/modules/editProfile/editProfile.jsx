@@ -1,5 +1,5 @@
 import React,{createFactory, useEffect, useState} from 'react'
-import './signUp.scss'
+import './editProfile.scss'
 import Input from '../../components/Input/input'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,16 +13,17 @@ import config from '../../config'
 
 
 
-const SignUp = () =>{
+const EditProfile = () =>{
     const history = useHistory();
-    
+    const location = useLocation();
+    console.log(location)
     const [form,setForm]=React.useState({
-        email:" ", 
+        email:location.state.user.email, 
         password:" ", 
         photo:"null", 
-        name:" ", 
-        lastname:" ",         
-        phonenumber:0, 
+        name:location.state.user.name, 
+        lastname:location.state.user.lastName,         
+        phonenumber:location.state.user.phoneNumber, 
         dob:new Date(), 
         genre:" "
     })
@@ -55,9 +56,9 @@ const SignUp = () =>{
 
     useEffect(()=>{
         var isLoggued = localStorage.getItem("login")
-        console.log(isLoggued)
-        if(isLoggued){
-            history.push("/")
+        
+        if(!isLoggued){
+            history.push("/login")
         }
     },[])
     
@@ -72,10 +73,10 @@ const SignUp = () =>{
     
     console.log(form)
    
-    const createAccount = async (e) =>{
+    const editAccount = async (e) =>{
         //Avoid html default submit
         e.preventDefault();
-        if (!form.email || !form.password || !form.name || !form.lastname || !form.phonenumber || !form.dob) {
+        if (form.email == " " || form.password == " " || form.name == " " || form.lastname == " " || form.phonenumber == 0 || !form.dob ||  form.genre==" ") {
         setError("No se permiten campos vacios");
         return;
         }
@@ -86,11 +87,12 @@ const SignUp = () =>{
         try{
             
 
-            var url = `${config.backendURL}carer/`;
+            var url = `${config.backendURL}carer/${location.state.user.id}/`;
             let h = new Headers();
             
             h.append('Accept', 'application/json, text/plain, /')
             h.append('Content-Type', 'application/json')
+            h.append('authorization', `Bearer ${location.state.token}`)
 
             const b = {
             "email":form.email, 
@@ -102,11 +104,11 @@ const SignUp = () =>{
             "dob":start, 
             "genre":form.genre} 
            
-           console.log(form)
+        //    console.log(form)
            
-           console.log(b)
+        //    console.log(b)
             let req= new Request(url,{
-                method: 'POST',
+                method: 'PUT',
                 headers: h,
                 body: JSON.stringify(b)
                 
@@ -115,59 +117,13 @@ const SignUp = () =>{
             await fetch(req)
             .then((response)=>{
                 response.json().then((data) => {
-                    // console.log(data.Status)
-                    // if(data.Status==0){
-                    //     history.push({
-                    //         pathname:"/addPatient",
-                    //         state:form
-                    //     })
-                    // }
+                    console.log(data)
                     if(data.Status==0){
-
-                        try{
-    
-    
-                            var url = `${config.backendURL}carer/login/`;
-                            let h = new Headers();
-                            
-                            h.append('email',`${form.email}`)
-                            h.append('password',`${form.password}`)
-                           
-                           
-                            let req= new Request(url,{
-                                method: 'GET',
-                                headers: h,
-                    
-                                
-                            });
-                
-                            fetch(req)
-                            .then((response)=>{
-                                response.json().then((data) => {
-                                    console.log(data);
-                                    if (data.Status!==0) {
-                                        setError("No se permiten campos Vacios");
-                                    } else {
-                                        console.log(data);
-                                      
-                                        const base64Login = btoa(data.token);
-                                        localStorage.setItem("login", base64Login);
-                                        history.push({
-                                            pathname: '/addPatient',
-                                            state: data // your data array of objects
-                                          })
-                                    }
-                                })
-                            })
-                            .catch((err)=>{
-                                console.log(err)
-                            })
-                
-                        }
-                        catch(error) {
-                            setError("Error de red. Vuelva a intentarlo más tarde");
-                            console.error(error);
-                        }
+                        history.push({
+                            pathname:"/",
+                            state:location.state
+                        })
+                        
                     }
                    
                     
@@ -187,7 +143,10 @@ const SignUp = () =>{
     }
 
     const buttonCancel = () =>{
-        history.push("/login")
+        history.push({
+            pathname:"/",
+            state:location.state
+        })
     }
     
     return(
@@ -195,38 +154,38 @@ const SignUp = () =>{
             <div className="container">
                 <div className="container-register">
                     <div className="title-register">
-                        <h2>Register</h2>                        
+                        <h2>Edit Profile</h2>                        
                     </div>
                     <div className="fullname-container">
                         <div className="firstname-container">
                             <label>First Name</label>
-                            <Input name="name" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="text" />
+                            <Input placeholder={location.state.user.name} name="name" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="text" />
                         </div>
                         <div className="lastname-container">
                             <label>Last Name</label>
-                            <Input name="lastname" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="text" />
+                            <Input placeholder={location.state.user.lastName} name="lastname" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="text" />
                         </div>
                     </div>
                     <div className="user-password-container">
                         <div className="password-container">
                             <label>Password</label>
-                            <Input name="password" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="password" />
+                            <Input  name="password" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="password" />
                         </div>
                     </div>
                     <div className="email-phone-container">
                         <div className="email-container">
                             <label>Email</label>
-                            <Input name="email" onChange={handleOnChange}style={{width: "90%",height: "40px"}} type="text" />
+                            <Input placeholder={location.state.user.email} name="email" onChange={handleOnChange}style={{width: "90%",height: "40px"}} type="text" />
                         </div>
                         <div className="phone-container">
                             <label>Phone Number</label>
-                            <Input name="phonenumber" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="number" />
+                            <Input placeholder={location.state.user.phoneNumber} name="phonenumber" onChange={handleOnChange} style={{width: "90%",height: "40px"}} type="number" />
                         </div>
                     </div>
                     <div className="genere-date-container">
                         <div className="genere-container">
                             <label>Genre</label>
-                            <select name="genre" onChange={handleOnChange} style={{width:"92%", height:"48px"}}> 
+                            <select  name="genre" onChange={handleOnChange} style={{width:"92%", height:"48px"}}> 
                                 <option value="">Select Genre</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -304,7 +263,7 @@ const SignUp = () =>{
                         </div>
                         <div className="buttonsContainer">
                             <Button onClick={buttonCancel}  className="buttonCancel">Cancel</Button>
-                            <Button onClick={createAccount} className="buttonCreate">Create Account</Button>
+                            <Button onClick={editAccount} className="buttonCreate">Create Account</Button>
 
                         </div>
                     </div>
@@ -316,4 +275,4 @@ const SignUp = () =>{
         </>
     )
 }
-export default SignUp
+export default EditProfile

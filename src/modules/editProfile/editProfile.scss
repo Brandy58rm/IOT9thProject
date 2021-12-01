@@ -1,0 +1,225 @@
+.container {
+    margin: 0;
+    background: linear-gradient(180deg, #40C4FF 0%, #01579B 100%);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container-register {
+        width: 30%;
+        height: 65%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2pt solid #40C4FF;
+        border-radius: 10px;
+        .title-register {
+            h2 {
+                font-size: 30pt;
+                font-family: 'Azeret Mono', monospace;
+                color: #40C4FF;
+                font-weight: bold;
+            }
+        }
+        .fullname-container {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Inconsolata', monospace;
+            justify-content: center;
+            font-size: 16pt;
+            color: #40C4FF;
+            .firstname-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 0 0 0 2%;
+                label {
+                    font-weight: bold;
+                }
+            }
+            .lastname-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                label {
+                    font-weight: bold;
+                }
+            }
+        }
+        .user-password-container {
+            margin-top: 25px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Inconsolata', monospace;
+            justify-content: center;
+            font-size: 16pt;
+            color: #40C4FF;
+            .user-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 0 0 0 2%;
+                label {
+                    font-weight: bold;
+                }
+            }
+            .password-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 0% 0% 0% 2%;
+                label {
+                    font-weight: bold;
+                }
+            }
+        }
+        .email-phone-container {
+            margin-top: 25px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Inconsolata', monospace;
+            justify-content: center;
+            font-size: 16pt;
+            color: #40C4FF;
+            .email-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 0 0 0 2%;
+                label {
+                    font-weight: bold;
+                }
+            }
+            .phone-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                label {
+                    font-weight: bold;
+                }
+            }
+        }
+        .genere-date-container {
+            margin-top: 25px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            font-family: 'Inconsolata', monospace;
+            justify-content: center;
+            font-size: 16pt;
+            color: #40C4FF;
+            .genere-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin: 0 0 0 2%;
+                label {
+                    font-weight: bold;
+                }
+                select {
+                    border-color: #40C4FF;
+                    width: 100%;
+                    height: 40px;
+                    border-radius: 10px;
+                    font-size: 15pt;
+                    border: 2pt solid #40C4FF;
+                    font-family: 'Inconsolata', monospace;
+                    color: #fff;
+                    background-color: #01579B;
+                    padding-left: 10px;
+                    &:focus {
+                        font-family: 'Inconsolata', monospace;
+                        outline: none;
+                        border: none;
+                        box-shadow: 0 0 2pt #40C4FF;
+                    }
+                }
+            }
+            .date-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                label {
+                    font-weight: bold;
+                }
+                .dateInput {
+                    width: 90%;
+                    padding-left: 20px;
+                    background-color: #01579B;
+                    color: #fff;
+                }
+            }
+        }
+        .profilePicture-buttons-container {
+            display: flex;
+            margin-top: 0px !important;
+            width: 100%;
+            height: 100%;
+            .profileContainer {
+                width: 50%;
+                display: flex;
+                margin-left: 2%;
+            }
+            .buttonsContainer {
+                width: 50%;
+                margin-top: 25%;
+                display: flex;
+                .buttonCancel {
+                    width: 130px;
+                    height: 50px;
+                    background-color: #CD0303;
+                    border-radius: 10px;
+                    border: none;
+                    color: #fff;
+                    font-family: 'Inconsolata', monospace;
+                    font-size: 15pt;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                .buttonCreate {
+                    width: 130px;
+                    height: 50px;
+                    border: none;
+                    background-color: #009975;
+                    border-radius: 10px;
+                    color: #fff;
+                    font-family: 'Inconsolata', monospace;
+                    font-size: 15pt;
+                    margin-left: 25px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .error {
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 35px;
+            background-color: #B71C1C;
+            border-radius: 5px;
+            span {
+                font-family: 'Azeret Mono', monospace;
+                font-size: 12pt;
+                color: #fff;
+                text-align: center;
+            }
+        }
+        span {
+            color: #01579B;
+            a {
+                color: #40C4FF;
+            }
+        }
+    }
+}
