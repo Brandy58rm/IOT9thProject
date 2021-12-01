@@ -16,10 +16,39 @@ const Dashboard = () =>{
     const [disabled, setDisabled]=React.useState(false)
     const [option,setOption] = React.useState({
         chart: {
-          type: "column"
+          type: "column",
+          // Explicitly tell the width and height of a chart
+        
+          height: 1000,
+          events: {
+            drilldown: function(e) {
+                
+                this.yAxis[0].setTitle({ text: "Total Dosis" });
+            },
+            drillup: function(e) {
+                ;
+                this.yAxis[0].setTitle({ text: "Prescriptions" });
+            }
+        }
         },
         title: {
-          text: "Total of Schedule"
+          text: "Schedule"
+        },
+        xAxis:{
+          type:"category",
+          labels: {
+            style: {
+                fontSize: '24px'
+            }
+          }
+        },
+        yAxis:{
+          title:{text:"Prescriptions"},
+          labels: {
+            style: {
+                fontSize: '14px'
+            }
+          }
         },
         series: [
           {
@@ -55,8 +84,9 @@ const Dashboard = () =>{
           }
         ],
         drilldown: {
+         
           series: [
-              
+            
             {
               id: "animals",
               data: [["Cats", 4], ["Dogs", 2], ["Cows", 1], ["Sheep", 2], ["Pigs", 1]]
@@ -146,43 +176,24 @@ const Dashboard = () =>{
                       }
                     )
                     const schedule=data.patient.schedule;
-                    // console.log(schedule)
-                    // schedule.forEach(s => {
-
-                    //   dripData.push({
-                    //     id:data.patient.id.toString(),
-                    //     data:  [
-                    //       {
-                    //         name:s.medication.name,
-                    //         y:s.totalDosis
-                    //       }
-                    //     ]
-                    //   }
-                    // )
-                    // });
-                    
-                   
+                    console.log(schedule)
+                    const drugs=[]
                     dripData.push({
                       id:data.patient.id.toString(),
-                      data:[]
-                    })
-                  
-
-
-                    for (var i = 0; i < schedule.length; i++) {
-                      // dripData.push({
-                      //   data:[{
-                      //     name:schedule[i].medication.name,
-                      //     y:schedule[i].totalDosis
-                      //   }]
-
-                      // })
-                      dripData[i].data.push({
-                        name:schedule[i].medication.name,
-                        y:schedule[i].totalDosis
-                      })
-                      
+                      data:  drugs
                     }
+                  )
+                    schedule.forEach(s => {
+                      drugs.push({
+                        name:s.medication.name,
+                        y:s.totalDosis
+                      })
+                    });
+
+                    console.log(dripData)
+                    
+                   
+                    
                     
                     
                 })
@@ -222,11 +233,18 @@ const Dashboard = () =>{
       })
     }
 
+    const goToHome = () =>{
+      history.push({
+        pathname:"/",
+        state:location.state.state
+      })
+    }
+
     drilldown(Highcharts)
     return(
         <>
             <div className="dashboardContainer" >
-                <Header></Header>
+                <Header onClickHome={goToHome}></Header>
                 <div className="chartContent">
                 <HighchartsReact highcharts={Highcharts}  options={option} oneToOne={true}   allowChartUpdate={true}/>
                 </div>

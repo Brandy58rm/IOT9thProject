@@ -86,7 +86,8 @@ const Home = () =>{
             pathname: '/view',
             state: {
                 state : location.state,
-                idPatient: data.id
+                idPatient: data.id,
+                patients:patients
             } // your data array of objects
         })
     }

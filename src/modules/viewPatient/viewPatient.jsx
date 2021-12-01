@@ -164,7 +164,19 @@ const ViewPatient = () =>{
        
     }
 
-    
+    const goToDash = () =>{
+        
+
+        history.push({
+            pathname:'/dashboard',
+            state:{
+                state:location.state.state,
+                patients:location.state.patients
+            }
+
+        }
+        )
+    }
    
     console.log(location)
     console.log(info)
@@ -174,7 +186,7 @@ const ViewPatient = () =>{
     return(
         <>
             <div className="viewContainer">
-                <Header onClickHome={goToHome}/>
+                <Header onClickHome={goToHome} onClickDashboard={goToDash}/>
                 <div className="generalContent">
                     <div className="leftContent">
                        
@@ -250,10 +262,10 @@ const ViewPatient = () =>{
                                     </div>
                                 </div>
                                 <div className="buttonsContainer">
-                                    <div>
+                                    {/* <div>
                                         <Button className="buttonDash">DashBoard</Button>
 
-                                    </div>
+                                    </div> */}
                                     <div>
                                         <Button onClick={goToAddPrescription} className="buttonAdd">Add</Button>
                                         <Button className="buttonEdit">Edit</Button>
